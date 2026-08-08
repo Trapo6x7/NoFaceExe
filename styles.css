@@ -169,6 +169,15 @@ main {
   gap: 8px;
 }
 
+.desktop-download-notice {
+  display: none;
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .hero-title {
   margin: 16px 0 8px;
   color: var(--muted);
@@ -407,11 +416,31 @@ main {
 
   .intent-modal {
     width: 100%;
-    max-height: calc(100vh - 16px);
+    max-height: 80vh;
+    max-height: 80dvh;
   }
 
   .intent-modal-body {
-    padding: 16px;
+    padding: 12px;
+  }
+
+  .intent-modal-body section {
+    margin-bottom: 12px;
+  }
+
+  .intent-modal-footer {
+    min-height: 42px;
+    padding: 6px 10px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .downloads {
+    display: none;
+  }
+
+  .desktop-download-notice {
+    display: block;
   }
 }
 

@@ -11,6 +11,8 @@ const TRANSLATIONS = {
     switchLabel: "Passer le site en anglais",
     install: "Installer NOFACE.EXE",
     portable: "Version portable",
+    desktopDownloadNotice:
+      "NOFACE.EXE est disponible sur Windows. Ouvrez cette page depuis un ordinateur pour le télécharger.",
     tagline: "LOCAL - ANONYME - GRATUIT",
     gestureTitle: "Le geste",
     gestureBody:
@@ -50,6 +52,8 @@ const TRANSLATIONS = {
     switchLabel: "Switch the site to French",
     install: "Install NOFACE.EXE",
     portable: "Portable version",
+    desktopDownloadNotice:
+      "NOFACE.EXE is available for Windows. Open this page on a computer to download it.",
     tagline: "LOCAL - ANONYMOUS - FREE",
     gestureTitle: "The gesture",
     gestureBody:
