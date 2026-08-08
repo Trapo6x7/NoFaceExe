@@ -5,7 +5,7 @@ const DOWNLOAD_URLS = {
 
 const TRANSLATIONS = {
   fr: {
-    description: "NOFACE.EXE anonymise localement les visages dans vos photos et vidéos.",
+    description: "NOFACE.EXE",
     aboutLabel: "À propos",
     closeLabel: "Fermer",
     switchLabel: "Passer le site en anglais",
@@ -46,7 +46,7 @@ const TRANSLATIONS = {
       "loin des plateformes, du cloud et de la surveillance permanente.",
   },
   en: {
-    description: "NOFACE.EXE anonymizes faces locally in your photos and videos.",
+    description: "NOFACE.EXE",
     aboutLabel: "About",
     closeLabel: "Close",
     switchLabel: "Switch the site to French",
