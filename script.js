@@ -114,36 +114,9 @@ function applyLanguage(language) {
   return normalizedLanguage;
 }
 
-const compactDeviceQuery = window.matchMedia(
-  "(max-width: 1024px), (hover: none) and (pointer: coarse)",
-);
-
-let currentLanguage = "en";
-
-function renderDownloads() {
-  const downloads = document.querySelector("[data-downloads]");
-  const notice = document.querySelector(".desktop-download-notice");
-
-  downloads.replaceChildren();
-  notice.hidden = !compactDeviceQuery.matches;
-
-  if (compactDeviceQuery.matches) return;
-
-  [
-    { type: "setup", translation: "install" },
-    { type: "portable", translation: "portable", secondary: true },
-  ].forEach(({ type, translation, secondary }) => {
-    const link = document.createElement("a");
-
-    link.className = secondary ? "download download-secondary" : "download";
-    link.href = DOWNLOAD_URLS[type];
-    link.download = "";
-    link.dataset.download = type;
-    link.dataset.i18n = translation;
-    link.textContent = TRANSLATIONS[currentLanguage][translation];
-    downloads.append(link);
-  });
-}
+document.querySelectorAll("[data-download]").forEach((link) => {
+  link.href = DOWNLOAD_URLS[link.dataset.download];
+});
 
 function renderPixelatedLabels() {
   document.querySelectorAll(".download").forEach((element) => {
@@ -175,13 +148,8 @@ function renderPixelatedLabels() {
   });
 }
 
-renderDownloads();
+let currentLanguage = "en";
 renderPixelatedLabels();
-
-compactDeviceQuery.addEventListener("change", () => {
-  renderDownloads();
-  renderPixelatedLabels();
-});
 
 document.querySelector("[data-language-toggle]")?.addEventListener("click", () => {
   currentLanguage = applyLanguage(currentLanguage === "fr" ? "en" : "fr");
@@ -249,6 +217,7 @@ dragHandle?.addEventListener("pointerdown", (event) => {
   };
 
   appWindow.style.position = "fixed";
+  appWindow.style.width = `${bounds.width}px`;
   appWindow.style.left = `${bounds.left}px`;
   appWindow.style.top = `${bounds.top}px`;
   appWindow.style.margin = "0";

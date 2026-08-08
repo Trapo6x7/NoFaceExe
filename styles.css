@@ -170,6 +170,7 @@ main {
 }
 
 .desktop-download-notice {
+  display: none;
   margin: 0;
   color: var(--ink);
   font-size: 12px;
@@ -415,8 +416,8 @@ main {
 
   .intent-modal {
     width: min(86vw, 360px);
-    max-height: 65vh;
-    max-height: 65dvh;
+    max-height: 55vh;
+    max-height: 55dvh;
   }
 
   .intent-modal-body {
@@ -438,6 +439,16 @@ main {
     width: min(72vw, 520px);
     max-height: 70vh;
     max-height: 70dvh;
+  }
+}
+
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  .downloads {
+    display: none;
+  }
+
+  .desktop-download-notice {
+    display: block;
   }
 }
 
