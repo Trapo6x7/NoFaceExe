@@ -81,17 +81,6 @@ const TRANSLATIONS = {
   },
 };
 
-function getInitialLanguage() {
-  try {
-    const savedLanguage = localStorage.getItem("noface-language");
-    if (savedLanguage && savedLanguage in TRANSLATIONS) return savedLanguage;
-  } catch {
-    // Local storage can be unavailable in privacy-restricted contexts.
-  }
-
-  return "en";
-}
-
 function applyLanguage(language) {
   const normalizedLanguage = language in TRANSLATIONS ? language : "en";
   const translations = TRANSLATIONS[normalizedLanguage];
@@ -116,12 +105,6 @@ function applyLanguage(language) {
     languageToggle.textContent = normalizedLanguage === "fr" ? "EN" : "FR";
     languageToggle.lang = normalizedLanguage === "fr" ? "en" : "fr";
     languageToggle.setAttribute("aria-label", translations.switchLabel);
-  }
-
-  try {
-    localStorage.setItem("noface-language", normalizedLanguage);
-  } catch {
-    // The language still works for the current page without persistence.
   }
 
   return normalizedLanguage;
@@ -161,7 +144,7 @@ function renderPixelatedLabels() {
   });
 }
 
-let currentLanguage = applyLanguage(getInitialLanguage());
+let currentLanguage = "en";
 renderPixelatedLabels();
 
 document.querySelector("[data-language-toggle]")?.addEventListener("click", () => {
