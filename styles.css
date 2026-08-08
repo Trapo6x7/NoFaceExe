@@ -169,6 +169,13 @@ main {
   gap: 8px;
 }
 
+.hero-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .download {
   position: relative;
   display: flex;
