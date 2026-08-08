@@ -56,9 +56,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          SETUP="assets/NOFACE.EXE-Setup-${VERSION}-x64.exe"
+          PORTABLE="assets/NOFACE.EXE-Portable-${VERSION}-x64.exe"
+
           gh release create "$GITHUB_REF_NAME" \
-            assets/NOFACE.EXE-Setup-1.1.0-x64.exe \
-            assets/NOFACE.EXE-Portable-1.1.0-x64.exe \
-            --title "NOFACE.EXE 1.1.0" \
+            "$SETUP" \
+            "$PORTABLE" \
+            --title "NOFACE.EXE ${VERSION}" \
             --generate-notes \
             --verify-tag
