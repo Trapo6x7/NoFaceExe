@@ -1,0 +1,64 @@
+name: Deploy NOFACE.EXE
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Prepare static site
+        run: |
+          mkdir -p _site/assets
+          cp index.html styles.css script.js _site/
+          cp assets/icon.ico assets/noface-preview.png assets/splashscreen.png _site/assets/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout with Git LFS
+        uses: actions/checkout@v6
+        with:
+          lfs: true
+
+      - name: Publish installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            assets/NOFACE.EXE-Setup-1.1.0-x64.exe \
+            assets/NOFACE.EXE-Portable-1.1.0-x64.exe \
+            --title "NOFACE.EXE 1.1.0" \
+            --generate-notes \
+            --verify-tag

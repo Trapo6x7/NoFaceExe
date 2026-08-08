@@ -1,11 +1,7 @@
 const DOWNLOAD_URLS = {
-  setup: "./assets/NOFACE.EXE-Setup-1.1.0-x64.exe",
-  portable: "./assets/NOFACE.EXE-Portable-1.1.0-x64.exe",
+  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.0/NOFACE.EXE-Setup-1.1.0-x64.exe",
+  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.0/NOFACE.EXE-Portable-1.1.0-x64.exe",
 };
-
-if (["http:", "https:"].includes(window.location.protocol) && window.location.href !== `${window.location.origin}/`) {
-  window.history.replaceState(null, "", "/");
-}
 
 document.querySelectorAll("[data-download]").forEach((link) => {
   link.href = DOWNLOAD_URLS[link.dataset.download];
