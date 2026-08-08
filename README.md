@@ -1,23 +1,23 @@
 # NoFace.Exe
 
-## Note d’intention
+## Statement of intent
 
-### Le geste
+### The gesture
 
-Un logiciel qui rend les visages illisibles. Une application autonome dont l’unique but est l’anonymisation.
+Software that renders faces unreadable. A standalone application whose sole purpose is anonymization.
 
-### Le concept : l’opacité comme droit
+### The concept: opacity as a right
 
-NOFACE.EXE détourne les outils de reconnaissance faciale pour soustraire plutôt qu’identifier. Le projet prolonge, dans le champ numérique, le « droit à l’opacité » formulé par Édouard Glissant : le droit de ne pas être entièrement identifiable, explicable ou réductible aux catégories d’un système, il affirme le droit de ne pas être réduit à une donnée. Une foule devient ainsi sujet anonymisé, hors des logiques d’entraînement.
+NOFACE.EXE repurposes facial recognition tools to subtract rather than identify. The project extends Édouard Glissant’s “right to opacity” into the digital realm: the right not to be fully identifiable, explainable, or reducible to a system’s categories. It asserts the right not to be reduced to data. A crowd thus becomes an anonymized subject, beyond the logic of model training.
 
-### Le pixel comme signe
+### The pixel as a sign
 
-La pixellisation ne cherche pas à effacer complètement les visages : elle maintient visible la trace de leur présence tout en retirant ce qui permettrait de les identifier. Le pixel devient ainsi un signe d’anonymisation, indiquant qu’une identité a volontairement été soustraite au regard. Répété sur une foule, ce traitement transforme chaque visage en abstraction graphique et fait basculer la photographie documentaire vers le motif.
+Pixelation does not seek to erase faces completely: it preserves a visible trace of their presence while removing what could make them identifiable. The pixel thus becomes a sign of anonymization, indicating that an identity has deliberately been withheld from view. Repeated across a crowd, this treatment turns each face into a graphic abstraction and shifts documentary photography toward pattern.
 
-### Ce qui échappe
+### What escapes
 
-La détection automatique reste imparfaite : certains visages échappent au modèle en raison de l’angle, de la lumière, du mouvement, de la résolution ou des biais contenus dans ses données d’entraînement. NOFACE.EXE ne dissimule pas ces erreurs, mais les rend visibles et permet à l’utilisateur de compléter manuellement le traitement. Ce geste réintroduit une décision humaine dans le processus automatisé et rappelle qu’aucun système de vision n’est neutre, exhaustif ou infaillible.
+Automatic detection remains imperfect: some faces escape the model because of angle, lighting, motion, resolution, or biases in its training data. NOFACE.EXE does not hide these errors. It makes them visible and allows the user to complete the process manually. This gesture reintroduces human judgment into the automated process and reminds us that no vision system is neutral, exhaustive, or infallible.
 
-### La position politique du fichier
+### The file as a political stance
 
-Tout le traitement s’effectue localement, sans envoi vers un serveur ni stockage distant : les images restent sur l’appareil de l’utilisateur. Ce choix technique devient une position politique, puisque l’anonymat repose sur l’absence même de collecte. L’esthétique Windows datée prolonge cette idée en évoquant une époque où le logiciel restait un objet local, autonome, que l’on installait et possédait, loin des plateformes, du cloud et de la surveillance permanente.
+All processing happens locally, with nothing sent to a server or stored remotely: images remain on the user’s device. This technical choice becomes a political stance, because anonymity rests on the very absence of data collection. The dated Windows aesthetic extends this idea by evoking an era when software was a local, standalone object that one installed and owned, far from platforms, the cloud, and permanent surveillance.

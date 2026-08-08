@@ -89,11 +89,11 @@ function getInitialLanguage() {
     // Local storage can be unavailable in privacy-restricted contexts.
   }
 
-  return navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+  return "en";
 }
 
 function applyLanguage(language) {
-  const normalizedLanguage = language in TRANSLATIONS ? language : "fr";
+  const normalizedLanguage = language in TRANSLATIONS ? language : "en";
   const translations = TRANSLATIONS[normalizedLanguage];
 
   document.documentElement.lang = normalizedLanguage;
