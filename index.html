@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NOFACE.EXE détecte et pixellise localement les visages dans vos photos et vidéos."
+    />
+    <title>NOFACE.EXE</title>
+    <link rel="icon" href="assets/icon.ico" sizes="any" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main data-window>
+      <header class="site-header" data-drag-handle>
+        <span class="brand" aria-hidden="true">
+          <img src="assets/icon.ico" alt="" />
+        </span>
+        <button class="header-info-button" type="button" data-modal-open aria-label="À propos">
+          ?
+        </button>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <div class="downloads">
+            <a class="download" data-download="setup" download>
+              Installer NOFACE.EXE
+            </a>
+            <a class="download download-secondary" data-download="portable" download>
+              Version portable
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <span>TRAPO.JS · <span data-year>2026</span></span>
+      </footer>
+    </main>
+
+    <div class="modal-backdrop" data-modal hidden>
+      <section
+        class="intent-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="intent-modal-title"
+      >
+        <header class="intent-modal-header">
+          <img src="assets/icon.ico" alt="" />
+          <strong id="intent-modal-title">NOFACE.EXE</strong>
+          <button type="button" class="intent-close-button" data-modal-close aria-label="Fermer">
+            ×
+          </button>
+        </header>
+
+        <div class="intent-modal-body">
+          <section>
+            <h2>Le geste</h2>
+            <p>Un logiciel qui rend les visages illisibles. Une application autonome dont l’unique but est l’anonymisation.</p>
+          </section>
+          <section>
+            <h2>Le concept : l’opacité comme droit</h2>
+            <p>NOFACE.EXE détourne les outils de reconnaissance faciale pour soustraire plutôt qu’identifier. Le projet prolonge, dans le champ numérique, le « droit à l’opacité » formulé par Édouard Glissant : le droit de ne pas être entièrement identifiable, explicable ou réductible aux catégories d’un système, il affirme le droit de ne pas être réduit à une donnée. Une foule devient ainsi sujet anonymisé, hors des logiques d’entraînement.</p>
+          </section>
+          <section>
+            <h2>Le pixel comme signe</h2>
+            <p>La pixellisation ne cherche pas à effacer complètement les visages : elle maintient visible la trace de leur présence tout en retirant ce qui permettrait de les identifier. Le pixel devient ainsi un signe d’anonymisation, indiquant qu’une identité a volontairement été soustraite au regard. Répété sur une foule, ce traitement transforme chaque visage en abstraction graphique et fait basculer la photographie documentaire vers le motif.</p>
+          </section>
+          <section>
+            <h2>Ce qui échappe</h2>
+            <p>La détection automatique reste imparfaite : certains visages échappent au modèle en raison de l’angle, de la lumière, du mouvement, de la résolution ou des biais contenus dans ses données d’entraînement. NOFACE.EXE ne dissimule pas ces erreurs, mais les rend visibles et permet à l’utilisateur de compléter manuellement le traitement. Ce geste réintroduit une décision humaine dans le processus automatisé et rappelle qu’aucun système de vision n’est neutre, exhaustif ou infaillible.</p>
+          </section>
+          <section>
+            <h2>La position politique du fichier</h2>
+            <p>Tout le traitement s’effectue localement, sans envoi vers un serveur ni stockage distant : les images restent sur l’appareil de l’utilisateur. Ce choix technique devient une position politique, puisque l’anonymat repose sur l’absence même de collecte. L’esthétique Windows datée prolonge cette idée en évoquant une époque où le logiciel restait un objet local, autonome, que l’on installait et possédait, loin des plateformes, du cloud et de la surveillance permanente.</p>
+          </section>
+        </div>
+
+        <div class="intent-modal-footer">
+          <button type="button" class="modal-ok-button" data-modal-close>OK</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
