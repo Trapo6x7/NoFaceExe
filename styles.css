@@ -170,7 +170,6 @@ main {
 }
 
 .desktop-download-notice {
-  display: none;
   margin: 0;
   color: var(--ink);
   font-size: 12px;
@@ -415,32 +414,30 @@ main {
   }
 
   .intent-modal {
-    width: 100%;
-    max-height: 80vh;
-    max-height: 80dvh;
+    width: min(86vw, 360px);
+    max-height: 65vh;
+    max-height: 65dvh;
   }
 
   .intent-modal-body {
-    padding: 12px;
+    padding: 10px;
   }
 
   .intent-modal-body section {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .intent-modal-footer {
-    min-height: 42px;
+    min-height: 38px;
     padding: 6px 10px;
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .downloads {
-    display: none;
-  }
-
-  .desktop-download-notice {
-    display: block;
+@media (min-width: 641px) and (max-width: 1024px) {
+  .intent-modal {
+    width: min(72vw, 520px);
+    max-height: 70vh;
+    max-height: 70dvh;
   }
 }
 

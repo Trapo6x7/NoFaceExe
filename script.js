@@ -114,9 +114,36 @@ function applyLanguage(language) {
   return normalizedLanguage;
 }
 
-document.querySelectorAll("[data-download]").forEach((link) => {
-  link.href = DOWNLOAD_URLS[link.dataset.download];
-});
+const compactDeviceQuery = window.matchMedia(
+  "(max-width: 1024px), (hover: none) and (pointer: coarse)",
+);
+
+let currentLanguage = "en";
+
+function renderDownloads() {
+  const downloads = document.querySelector("[data-downloads]");
+  const notice = document.querySelector(".desktop-download-notice");
+
+  downloads.replaceChildren();
+  notice.hidden = !compactDeviceQuery.matches;
+
+  if (compactDeviceQuery.matches) return;
+
+  [
+    { type: "setup", translation: "install" },
+    { type: "portable", translation: "portable", secondary: true },
+  ].forEach(({ type, translation, secondary }) => {
+    const link = document.createElement("a");
+
+    link.className = secondary ? "download download-secondary" : "download";
+    link.href = DOWNLOAD_URLS[type];
+    link.download = "";
+    link.dataset.download = type;
+    link.dataset.i18n = translation;
+    link.textContent = TRANSLATIONS[currentLanguage][translation];
+    downloads.append(link);
+  });
+}
 
 function renderPixelatedLabels() {
   document.querySelectorAll(".download").forEach((element) => {
@@ -148,8 +175,13 @@ function renderPixelatedLabels() {
   });
 }
 
-let currentLanguage = "en";
+renderDownloads();
 renderPixelatedLabels();
+
+compactDeviceQuery.addEventListener("change", () => {
+  renderDownloads();
+  renderPixelatedLabels();
+});
 
 document.querySelector("[data-language-toggle]")?.addEventListener("click", () => {
   currentLanguage = applyLanguage(currentLanguage === "fr" ? "en" : "fr");
