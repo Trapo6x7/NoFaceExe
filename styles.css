@@ -2,12 +2,12 @@
   --ink: #06344a;
   --blue: #087fc0;
   --blue-dark: #005583;
-  --cyan: #33cbe1;
-  --cyan-light: #dffcff;
+  --cyan: #54bced;
+  --cyan-light: #e0f2f8;
   --green: #55c92d;
   --green-dark: #208b18;
   --line: #78aeb5;
-  --panel: #efffff;
+  --panel: #eaf4f8;
 }
 
 * {
@@ -55,12 +55,12 @@ main {
   height: min(300px, calc(100vh - 48px));
   min-height: 260px;
   overflow: hidden;
-  border: 1px solid rgba(0, 92, 127, 0.9);
+  border: 1px solid #075774;
   border-radius: 10px 10px 5px 5px;
-  background: rgba(226, 252, 255, 0.93);
+  background: rgba(219, 234, 242, 0.96);
   box-shadow:
     0 20px 60px rgba(0, 38, 65, 0.48),
-    0 0 0 4px rgba(203, 250, 255, 0.65),
+    0 0 0 4px rgba(210, 241, 250, 0.68),
     inset 0 0 0 1px #ffffff;
 }
 
@@ -76,9 +76,20 @@ main {
   justify-content: space-between;
   height: 36px;
   padding: 4px 7px 4px 9px;
-  border-bottom: 1px solid #05769f;
-  background: linear-gradient(to bottom, #75e7f2 0%, #24c3df 48%, #0695cb 52%, #056eaa 100%);
-  box-shadow: inset 0 1px #d8ffff, inset 0 -1px rgba(0, 50, 94, 0.42);
+  border-color: #0871af #075c9b #064477 #0c99d4;
+  border-bottom: 1px solid #064477;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.72) 0 7%,
+      rgba(255, 255, 255, 0.13) 8% 45%,
+      transparent 46%
+    ),
+    linear-gradient(to right, #0968b4 0%, #168fd2 48%, #54bced 72%, #167fc4 100%);
+  box-shadow:
+    inset 0 1px 0 #c6f5ff,
+    inset 0 -1px 0 rgba(0, 57, 120, 0.55),
+    0 2px 5px rgba(0, 63, 97, 0.28);
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -136,10 +147,12 @@ main {
   width: 26px;
   height: 26px;
   padding: 0;
-  border: 1px solid #277c9a;
+  border: 1px solid;
+  border-color: rgba(231, 255, 255, 0.85) rgba(0, 74, 126, 0.65)
+    rgba(0, 74, 126, 0.65) rgba(231, 255, 255, 0.85);
   border-radius: 50%;
   color: #ffffff;
-  background: linear-gradient(#8ed9f2, #1689c8 54%, #00649c 55%, #159bd1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.34), rgba(0, 88, 149, 0.38));
   text-shadow: 0 1px #004a72;
 }
 
@@ -153,12 +166,12 @@ main {
   min-height: 0;
   padding: 24px;
   place-items: center;
-  border-right: 5px solid #7be1e5;
-  border-left: 5px solid #7be1e5;
+  border-right: 5px solid #b1d9e7;
+  border-left: 5px solid #d7eef5;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.28) 25%, transparent 25%) 0 0 / 12px 12px,
     linear-gradient(315deg, rgba(100, 186, 197, 0.09) 25%, transparent 25%) 0 0 / 12px 12px,
-    linear-gradient(#d9f2f3, #b9dfe2);
+    linear-gradient(#e0f2f8, #bedde9);
   box-shadow: inset 2px 2px 5px rgba(32, 94, 104, 0.28);
 }
 
@@ -209,7 +222,14 @@ main {
 .download-secondary {
   border-color: #438a9b;
   color: #063a4a;
-  background: linear-gradient(#ffffff 0%, #d9f8f8 47%, #a8dfe4 51%, #ddf8f9 100%);
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.92) 0 13%,
+      rgba(255, 255, 255, 0.28) 14% 47%,
+      transparent 48%
+    ),
+    linear-gradient(#f7fdff 0%, #d9edf6 47%, #aacfe0 49%, #e7f5fa 100%);
   box-shadow: inset 0 0 0 1px #ffffff, 0 2px 4px rgba(0, 78, 96, 0.25);
 }
 
@@ -258,9 +278,16 @@ main {
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  border-top: 1px solid #66b8bf;
+  border-top: 1px solid #759ca9;
   color: #27606b;
-  background: linear-gradient(#f5ffff, #c8eff0 52%, #a4d9dc 53%, #dff7f8);
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.78) 0 10%,
+      rgba(255, 255, 255, 0.18) 11% 46%,
+      transparent 47%
+    ),
+    linear-gradient(90deg, #bddde8, #edf7fa 48%, #b6dae7);
   box-shadow: inset 0 1px #ffffff;
   font-size: 9px;
   letter-spacing: 0.04em;
@@ -290,11 +317,8 @@ main {
   display: grid;
   padding: 24px;
   place-items: center;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(181, 247, 255, 0.3) 0 4px, transparent 5px),
-    radial-gradient(circle at 87% 78%, rgba(114, 238, 142, 0.22) 0 7px, transparent 8px),
-    rgba(0, 45, 61, 0.62);
-  backdrop-filter: blur(4px) saturate(1.15);
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .intent-modal {
@@ -307,7 +331,7 @@ main {
   border: 2px solid;
   border-color: #dfffff #075774 #06445d #dfffff;
   border-radius: 9px 9px 5px 5px;
-  background: #d9eeeb;
+  background: #dbeaf2;
   box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.92),
     inset -1px -1px 0 rgba(0, 64, 82, 0.48),
@@ -331,7 +355,7 @@ main {
       rgba(255, 255, 255, 0.17) 10% 46%,
       transparent 47%
     ),
-    linear-gradient(90deg, #0874bb 0%, #11a9d4 58%, #39c897 100%);
+    linear-gradient(90deg, #0868b0 0%, #2699d7 58%, #5fc67b 100%);
   box-shadow:
     inset 0 1px 0 #d8ffff,
     inset 0 -1px 0 rgba(0, 66, 85, 0.56),
@@ -361,7 +385,7 @@ main {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.28) 25%, transparent 25%) 0 0 / 12px 12px,
     linear-gradient(315deg, rgba(100, 186, 197, 0.09) 25%, transparent 25%) 0 0 / 12px 12px,
-    linear-gradient(#d9f2f3, #b9dfe2);
+    linear-gradient(#e0f2f8, #bedde9);
   box-shadow: inset 2px 2px 6px rgba(24, 90, 97, 0.26);
   scrollbar-color: #48bec0 #d8f5f3;
   scrollbar-width: thin;
@@ -451,7 +475,7 @@ main {
       rgba(255, 255, 255, 0.18) 11% 46%,
       transparent 47%
     ),
-    linear-gradient(90deg, #b9e3e2, #e6f5f1 48%, #a9dbd1);
+    linear-gradient(90deg, #bddde8, #edf7fa 48%, #b6dae7);
   box-shadow: inset 0 1px 0 #ffffff, inset 0 -2px 0 rgba(49, 105, 105, 0.32);
 }
 

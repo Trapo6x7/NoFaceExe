@@ -1,6 +1,6 @@
 const DOWNLOAD_URLS = {
-  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.1/NOFACE.EXE-Setup-1.1.1-x64.exe",
-  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.1/NOFACE.EXE-Portable-1.1.1-x64.exe",
+  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.2/NOFACE.EXE-Setup-1.1.2-x64.exe",
+  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.2/NOFACE.EXE-Portable-1.1.2-x64.exe",
 };
 
 const TRANSLATIONS = {
