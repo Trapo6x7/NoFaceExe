@@ -207,11 +207,17 @@ main {
   min-height: 42px;
   padding: 10px 14px;
   overflow: hidden;
-  border: 1px solid #268719;
-  border-radius: 4px;
-  color: #083e08;
-  background: linear-gradient(#eaffb7 0%, #8ee946 46%, #46bf26 50%, #8de841 100%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75), 0 2px 4px rgba(20, 92, 18, 0.34);
+  border: 0;
+  border-radius: 5px;
+  color: #124b05;
+  background:
+    radial-gradient(circle at 76% 20%, rgba(244, 255, 231, 0.9), transparent 22%),
+    linear-gradient(to bottom, #f2ffe9 0%, #c4f3a6 47%, #51c951 49%, #93e36f 100%);
+  box-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #247b32,
+    1px 2px 3px rgba(21, 96, 43, 0.4),
+    0 0 5px rgba(82, 221, 87, 0.36);
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
@@ -220,7 +226,7 @@ main {
 }
 
 .download-secondary {
-  border-color: #438a9b;
+  border: 0;
   color: #063a4a;
   background:
     linear-gradient(
@@ -245,10 +251,13 @@ main {
 .download:focus-visible,
 .header-info-button:focus-visible,
 .language-link:focus-visible,
-.modal-ok-button:focus-visible,
 .intent-close-button:focus-visible {
   outline: 2px solid #003eaa;
   outline-offset: 2px;
+}
+
+.modal-ok-button:focus-visible {
+  outline: none;
 }
 
 .pixelated-label {
@@ -257,10 +266,18 @@ main {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transform: scale(0.96);
+  transform: scale(0.88);
   image-rendering: pixelated;
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 420ms ease, transform 420ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.has-pixelated-label {
+  transition:
+    color 360ms ease,
+    text-shadow 360ms ease,
+    filter 140ms ease,
+    transform 100ms ease;
 }
 
 .has-pixelated-label:hover {
@@ -315,7 +332,7 @@ main {
   z-index: 20;
   inset: 0;
   display: grid;
-  padding: 24px;
+  padding: 8px;
   place-items: center;
   background: transparent;
   backdrop-filter: none;
@@ -324,8 +341,8 @@ main {
 .intent-modal {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  width: min(900px, calc(100vw - 32px));
-  height: min(875px, calc(100vh - 24px));
+  width: min(1100px, calc(100vw - 32px));
+  height: min(610px, calc(100vh - 24px));
   max-height: none;
   overflow: hidden;
   border: 2px solid;
@@ -343,9 +360,9 @@ main {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 7px;
-  min-height: 44px;
-  padding: 6px 12px;
+  gap: 9px;
+  min-height: 54px;
+  padding: 7px 15px;
   border-bottom: 2px solid #087291;
   color: #ffffff;
   background:
@@ -355,7 +372,7 @@ main {
       rgba(255, 255, 255, 0.17) 10% 46%,
       transparent 47%
     ),
-    linear-gradient(90deg, #0868b0 0%, #2699d7 58%, #5fc67b 100%);
+    linear-gradient(90deg, #0868b0 0%, #168fd2 48%, #54bced 100%);
   box-shadow:
     inset 0 1px 0 #d8ffff,
     inset 0 -1px 0 rgba(0, 66, 85, 0.56),
@@ -365,9 +382,9 @@ main {
 }
 
 .intent-modal-header img {
-  width: 25px;
-  height: 25px;
-  padding: 3px;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
   border: 1px solid;
   border-color: #ffffff #2c7180 #2c7180 #ffffff;
   border-radius: 50%;
@@ -379,16 +396,57 @@ main {
 }
 
 .intent-modal-body {
-  overflow: auto;
-  padding: 12px 22px 10px;
+  position: relative;
+  overflow: hidden;
+  padding: 16px 24px 10px;
   border: 0;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.28) 25%, transparent 25%) 0 0 / 12px 12px,
-    linear-gradient(315deg, rgba(100, 186, 197, 0.09) 25%, transparent 25%) 0 0 / 12px 12px,
-    linear-gradient(#e0f2f8, #bedde9);
-  box-shadow: inset 2px 2px 6px rgba(24, 90, 97, 0.26);
+  background: #eaf6fa;
+  box-shadow: none;
   scrollbar-color: #48bec0 #d8f5f3;
   scrollbar-width: thin;
+}
+
+.modal-pixel-layer {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent calc(var(--pixel-x, -100px) - 45px),
+      #000 calc(var(--pixel-x, -100px) - 30px),
+      #000 calc(var(--pixel-x, -100px) + 30px),
+      transparent calc(var(--pixel-x, -100px) + 45px)
+    ),
+    linear-gradient(
+      to bottom,
+      transparent calc(var(--pixel-y, -100px) - 16px),
+      #000 calc(var(--pixel-y, -100px) - 7px),
+      #000 calc(var(--pixel-y, -100px) + 7px),
+      transparent calc(var(--pixel-y, -100px) + 16px)
+    );
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent calc(var(--pixel-x, -100px) - 45px),
+      #000 calc(var(--pixel-x, -100px) - 30px),
+      #000 calc(var(--pixel-x, -100px) + 30px),
+      transparent calc(var(--pixel-x, -100px) + 45px)
+    ),
+    linear-gradient(
+      to bottom,
+      transparent calc(var(--pixel-y, -100px) - 16px),
+      #000 calc(var(--pixel-y, -100px) - 7px),
+      #000 calc(var(--pixel-y, -100px) + 7px),
+      transparent calc(var(--pixel-y, -100px) + 16px)
+    );
+  mask-composite: intersect;
+  image-rendering: pixelated;
+  pointer-events: none;
 }
 
 .intent-modal-body::-webkit-scrollbar {
@@ -408,33 +466,19 @@ main {
 }
 
 .intent-modal-body section {
-  margin-bottom: 12px;
-  padding: 12px 15px 14px;
-  border: 1px solid;
-  border-color: #ffffff #73999b #678b8e #ffffff;
-  border-radius: 5px;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.9) 0 8%,
-      rgba(255, 255, 255, 0.2) 9% 38%,
-      transparent 39%
-    ),
-    linear-gradient(145deg, rgba(250, 255, 252, 0.88), rgba(225, 241, 237, 0.82));
-  box-shadow:
-    inset 1px 1px 0 #ffffff,
-    inset -1px -1px 0 rgba(70, 121, 123, 0.24),
-    1px 2px 4px rgba(30, 82, 87, 0.2);
-}
-
-.intent-modal-body section:first-child h2 {
-  display: none;
+  margin: 0 0 8px;
+  padding: 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid #b2d2d9;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .intent-modal-body h2 {
   display: block;
-  margin: 0 0 7px;
-  padding-bottom: 5px;
+  margin: 0 0 4px;
+  padding-bottom: 4px;
   border-bottom: 1px solid #9ccfca;
   color: #075a65;
   font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
@@ -443,22 +487,14 @@ main {
 }
 
 .intent-modal-body h2::before {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 7px;
-  border: 1px solid #209332;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 24%, #ffffff 0 10%, #aef793 28%, #35bd52 68%, #147d34 100%);
-  box-shadow: 0 0 4px rgba(55, 210, 83, 0.55);
-  content: "";
+  content: none;
 }
 
 .intent-modal-body p {
   margin: 0;
   color: #193336;
-  font-size: 14px;
-  line-height: 1.62;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .intent-modal-footer {
@@ -480,10 +516,15 @@ main {
 }
 
 .modal-ok-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 118px;
   min-height: 36px;
   padding: 0 12px;
-  border: 1px solid #3aa51c;
+  overflow: hidden;
+  border: 0;
   border-radius: 5px;
   color: #124b05;
   background:
@@ -530,12 +571,13 @@ main {
   }
 
   .intent-modal {
-    width: min(94vw, 440px);
-    max-height: 82vh;
-    max-height: 82dvh;
+    width: 100%;
+    height: 100%;
+    max-height: none;
   }
 
   .intent-modal-body {
+    overflow: auto;
     padding: 9px;
   }
 
@@ -568,6 +610,7 @@ main {
   }
 
   .download,
+  .has-pixelated-label,
   .pixelated-label {
     transition: none;
   }

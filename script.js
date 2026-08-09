@@ -1,6 +1,6 @@
 const DOWNLOAD_URLS = {
-  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.2/NOFACE.EXE-Setup-1.1.2-x64.exe",
-  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.2/NOFACE.EXE-Portable-1.1.2-x64.exe",
+  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.3/NOFACE.EXE-Setup-1.1.3-x64.exe",
+  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.3/NOFACE.EXE-Portable-1.1.3-x64.exe",
 };
 
 const TRANSLATIONS = {
@@ -119,7 +119,7 @@ document.querySelectorAll("[data-download]").forEach((link) => {
 });
 
 function renderPixelatedLabels() {
-  document.querySelectorAll(".download").forEach((element) => {
+  document.querySelectorAll(".download, .modal-ok-button").forEach((element) => {
     element.dataset.pixelLabel = element.textContent.trim();
     element.querySelector(".pixelated-label")?.remove();
 
@@ -165,13 +165,94 @@ if (year) {
 const modal = document.querySelector("[data-modal]");
 const modalOpen = document.querySelector("[data-modal-open]");
 const modalCloseButtons = document.querySelectorAll("[data-modal-close]");
+const modalBody = modal?.querySelector(".intent-modal-body");
 let previousFocus;
+let modalPixelRenderId = 0;
+
+function renderModalPixelation() {
+  if (!modalBody || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const bounds = modalBody.getBoundingClientRect();
+  if (!bounds.width || !bounds.height) return;
+
+  const renderId = ++modalPixelRenderId;
+  const pixelSize = 6;
+  const source = modalBody.cloneNode(true);
+  source.querySelector(".modal-pixel-layer")?.remove();
+  source.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+
+  const sourceMarkup = new XMLSerializer().serializeToString(source);
+  const sourceStyles = `
+    * { box-sizing: border-box; }
+    .intent-modal-body {
+      width: ${bounds.width}px;
+      height: ${bounds.height}px;
+      overflow: hidden;
+      padding: 16px 24px 10px;
+      background: #eaf6fa;
+      color: #06344a;
+      font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+    }
+    section {
+      margin: 0 0 8px;
+      padding: 0 0 8px;
+      border-bottom: 1px solid #b2d2d9;
+    }
+    h2 {
+      margin: 0 0 4px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #9ccfca;
+      color: #075a65;
+      font-size: 15px;
+      text-shadow: 1px 1px 0 #ffffff;
+    }
+    p {
+      margin: 0;
+      color: #193336;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+  `;
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${bounds.width}" height="${bounds.height}">
+      <style>${sourceStyles}</style>
+      <foreignObject width="100%" height="100%">${sourceMarkup}</foreignObject>
+    </svg>
+  `;
+  const image = new Image();
+
+  image.addEventListener("load", () => {
+    if (renderId !== modalPixelRenderId) return;
+
+    let canvas = modalBody.querySelector(".modal-pixel-layer");
+    if (!canvas) {
+      canvas = document.createElement("canvas");
+      canvas.className = "modal-pixel-layer";
+      canvas.setAttribute("aria-hidden", "true");
+      modalBody.append(canvas);
+    }
+
+    canvas.width = Math.max(1, Math.ceil(bounds.width / pixelSize));
+    canvas.height = Math.max(1, Math.ceil(bounds.height / pixelSize));
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    context.imageSmoothingEnabled = false;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  });
+
+  image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
 
 function openModal() {
   previousFocus = document.activeElement;
   modal.hidden = false;
   document.body.classList.add("modal-open");
+  renderPixelatedLabels();
   modal.querySelector("[data-modal-close]").focus();
+  requestAnimationFrame(renderModalPixelation);
 }
 
 function closeModal() {
@@ -185,6 +266,21 @@ modalCloseButtons.forEach((button) => button.addEventListener("click", closeModa
 
 modal?.addEventListener("click", (event) => {
   if (event.target === modal) closeModal();
+});
+
+modalBody?.addEventListener("pointermove", (event) => {
+  const canvas = modalBody.querySelector(".modal-pixel-layer");
+  if (!canvas) return;
+
+  const bounds = modalBody.getBoundingClientRect();
+  canvas.style.setProperty("--pixel-x", `${event.clientX - bounds.left}px`);
+  canvas.style.setProperty("--pixel-y", `${event.clientY - bounds.top}px`);
+  canvas.style.opacity = "1";
+});
+
+modalBody?.addEventListener("pointerleave", () => {
+  const canvas = modalBody.querySelector(".modal-pixel-layer");
+  if (canvas) canvas.style.opacity = "0";
 });
 
 document.addEventListener("keydown", (event) => {
@@ -241,6 +337,7 @@ dragHandle?.addEventListener("pointercancel", stopDragging);
 
 window.addEventListener("resize", () => {
   renderPixelatedLabels();
+  if (modal && !modal.hidden) renderModalPixelation();
 
   if (appWindow?.style.position !== "fixed") return;
 
