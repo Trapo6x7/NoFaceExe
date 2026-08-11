@@ -1,6 +1,6 @@
 const DOWNLOAD_URLS = {
-  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.3/NOFACE.EXE-Setup-1.1.3-x64.exe",
-  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.1.3/NOFACE.EXE-Portable-1.1.3-x64.exe",
+  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/NOFACE.EXE-Setup-1.2.1-x64.exe",
+  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/NOFACE.EXE-Portable-1.2.1-x64.exe",
 };
 
 const TRANSLATIONS = {
@@ -188,29 +188,24 @@ function renderModalPixelation() {
       width: ${bounds.width}px;
       height: ${bounds.height}px;
       overflow: hidden;
-      padding: 16px 24px 10px;
-      background: #eaf6fa;
-      color: #06344a;
+      padding: 20px 24px 12px;
+      background: #f4f1e8ff;
+      color: #000000;
       font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
     }
     section {
-      margin: 0 0 8px;
-      padding: 0 0 8px;
-      border-bottom: 1px solid #b2d2d9;
+      margin: 0 0 18px;
     }
     h2 {
-      margin: 0 0 4px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #9ccfca;
-      color: #075a65;
-      font-size: 15px;
-      text-shadow: 1px 1px 0 #ffffff;
+      margin: 0 0 5px;
+      color: #000000;
+      font-size: 13px;
     }
     p {
       margin: 0;
-      color: #193336;
-      font-size: 13px;
-      line-height: 1.45;
+      color: #000000;
+      font-size: 12px;
+      line-height: 1.55;
     }
   `;
   const svg = `
@@ -273,7 +268,6 @@ modalBody?.addEventListener("pointermove", (event) => {
   if (!canvas) return;
 
   const bounds = modalBody.getBoundingClientRect();
-  canvas.style.setProperty("--pixel-x", `${event.clientX - bounds.left}px`);
   canvas.style.setProperty("--pixel-y", `${event.clientY - bounds.top}px`);
   canvas.style.opacity = "1";
 });
@@ -289,61 +283,73 @@ document.addEventListener("keydown", (event) => {
 
 const appWindow = document.querySelector("[data-window]");
 const dragHandle = document.querySelector("[data-drag-handle]");
-let dragState;
+const intentModal = modal?.querySelector(".intent-modal");
+const intentModalDragHandle = intentModal?.querySelector(".intent-modal-header");
 
-function moveWindow(clientX, clientY) {
-  const maxLeft = Math.max(0, window.innerWidth - appWindow.offsetWidth);
-  const maxTop = Math.max(0, window.innerHeight - appWindow.offsetHeight);
-  const left = Math.min(Math.max(0, clientX - dragState.offsetX), maxLeft);
-  const top = Math.min(Math.max(0, clientY - dragState.offsetY), maxTop);
+function makeDraggableWindow(windowElement, handle) {
+  let dragState;
 
-  appWindow.style.left = `${left}px`;
-  appWindow.style.top = `${top}px`;
+  if (!windowElement || !handle) return () => {};
+
+  function clampToViewport() {
+    if (windowElement.style.position !== "fixed") return;
+
+    const bounds = windowElement.getBoundingClientRect();
+    const maxLeft = Math.max(0, window.innerWidth - bounds.width);
+    const maxTop = Math.max(0, window.innerHeight - bounds.height);
+    windowElement.style.left = `${Math.min(Math.max(0, bounds.left), maxLeft)}px`;
+    windowElement.style.top = `${Math.min(Math.max(0, bounds.top), maxTop)}px`;
+  }
+
+  handle.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    if (event.target.closest("button")) return;
+
+    const bounds = windowElement.getBoundingClientRect();
+    dragState = {
+      pointerId: event.pointerId,
+      offsetX: event.clientX - bounds.left,
+      offsetY: event.clientY - bounds.top,
+    };
+
+    windowElement.style.position = "fixed";
+    windowElement.style.width = `${bounds.width}px`;
+    windowElement.style.left = `${bounds.left}px`;
+    windowElement.style.top = `${bounds.top}px`;
+    windowElement.style.margin = "0";
+    handle.classList.add("dragging");
+    handle.setPointerCapture(event.pointerId);
+  });
+
+  handle.addEventListener("pointermove", (event) => {
+    if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+    const maxLeft = Math.max(0, window.innerWidth - windowElement.offsetWidth);
+    const maxTop = Math.max(0, window.innerHeight - windowElement.offsetHeight);
+    const left = Math.min(Math.max(0, event.clientX - dragState.offsetX), maxLeft);
+    const top = Math.min(Math.max(0, event.clientY - dragState.offsetY), maxTop);
+    windowElement.style.left = `${left}px`;
+    windowElement.style.top = `${top}px`;
+  });
+
+  function stopDragging(event) {
+    if (!dragState || event.pointerId !== dragState.pointerId) return;
+    handle.classList.remove("dragging");
+    dragState = undefined;
+  }
+
+  handle.addEventListener("pointerup", stopDragging);
+  handle.addEventListener("pointercancel", stopDragging);
+
+  return clampToViewport;
 }
 
-dragHandle?.addEventListener("pointerdown", (event) => {
-  if (event.pointerType === "mouse" && event.button !== 0) return;
-  if (event.target.closest("button")) return;
-
-  const bounds = appWindow.getBoundingClientRect();
-  dragState = {
-    pointerId: event.pointerId,
-    offsetX: event.clientX - bounds.left,
-    offsetY: event.clientY - bounds.top,
-  };
-
-  appWindow.style.position = "fixed";
-  appWindow.style.width = `${bounds.width}px`;
-  appWindow.style.left = `${bounds.left}px`;
-  appWindow.style.top = `${bounds.top}px`;
-  appWindow.style.margin = "0";
-  dragHandle.classList.add("dragging");
-  dragHandle.setPointerCapture(event.pointerId);
-});
-
-dragHandle?.addEventListener("pointermove", (event) => {
-  if (!dragState || event.pointerId !== dragState.pointerId) return;
-  moveWindow(event.clientX, event.clientY);
-});
-
-function stopDragging(event) {
-  if (!dragState || event.pointerId !== dragState.pointerId) return;
-  dragHandle.classList.remove("dragging");
-  dragState = undefined;
-}
-
-dragHandle?.addEventListener("pointerup", stopDragging);
-dragHandle?.addEventListener("pointercancel", stopDragging);
+const clampAppWindow = makeDraggableWindow(appWindow, dragHandle);
+const clampIntentModal = makeDraggableWindow(intentModal, intentModalDragHandle);
 
 window.addEventListener("resize", () => {
   renderPixelatedLabels();
   if (modal && !modal.hidden) renderModalPixelation();
-
-  if (appWindow?.style.position !== "fixed") return;
-
-  const bounds = appWindow.getBoundingClientRect();
-  const maxLeft = Math.max(0, window.innerWidth - bounds.width);
-  const maxTop = Math.max(0, window.innerHeight - bounds.height);
-  appWindow.style.left = `${Math.min(Math.max(0, bounds.left), maxLeft)}px`;
-  appWindow.style.top = `${Math.min(Math.max(0, bounds.top), maxTop)}px`;
+  clampAppWindow();
+  clampIntentModal();
 });

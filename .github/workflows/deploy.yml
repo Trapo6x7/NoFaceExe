@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p _site/assets
           cp index.html styles.css script.js _site/
-          cp assets/icon.ico assets/noface-preview.png assets/splashscreen.png _site/assets/
+          cp assets/icon.png assets/noface-preview.png assets/splashscreen.png _site/assets/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
