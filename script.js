@@ -1,6 +1,6 @@
 const DOWNLOAD_URLS = {
-  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/noface.exe-Setup-1.2.1-x64.exe",
-  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/noface.exe-Portable-1.2.1-x64.exe",
+  setup: "https://github.com/Trapo6x7/nofaceexe/releases/download/v1.2.1/noface.exe-Setup-1.2.1-x64.exe",
+  portable: "https://github.com/Trapo6x7/nofaceexe/releases/download/v1.2.1/noface.exe-Portable-1.2.1-x64.exe",
 };
 
 const TRANSLATIONS = {
@@ -12,7 +12,7 @@ const TRANSLATIONS = {
     install: "Installer noface.exe",
     portable: "Version portable",
     desktopDownloadNotice:
-      "noface.exe est disponible sur Windows. Ouvrez cette page depuis un ordinateur pour le télécharger.",
+      "noface.exe est disponible sur Windows. \n<br> Ouvrez cette page depuis un ordinateur pour le télécharger.",
     tagline: "LOCAL - ANONYME - GRATUIT",
     gestureTitle: "Le geste",
     gestureBody:
