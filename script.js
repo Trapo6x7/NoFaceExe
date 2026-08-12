@@ -92,7 +92,13 @@ function applyLanguage(language) {
   document.documentElement.lang = normalizedLanguage;
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
-    element.textContent = translations[element.dataset.i18n];
+    const lines = translations[element.dataset.i18n].split("\n");
+
+    element.replaceChildren();
+    lines.forEach((line, index) => {
+      if (index > 0) element.append(document.createElement("br"));
+      element.append(line.trimStart());
+    });
   });
 
   document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
