@@ -26,12 +26,15 @@ body {
     linear-gradient(45deg, #c8c8c8 25%, transparent 25%),
     linear-gradient(-45deg, #c8c8c8 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #c8c8c8 75%),
-    linear-gradient(-45deg, transparent 75%, #c8c8c8 75%),
-    #dddddd;
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+    linear-gradient(-45deg, transparent 75%, #c8c8c8 75%), #dddddd;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
   background-size: 16px 16px;
   color: var(--ink);
-  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  font-family: "Pixelify Sans", Tahoma, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -44,6 +47,22 @@ button {
   color: inherit;
   font: inherit;
   cursor: pointer;
+}
+
+.pixel-icon {
+  display: block;
+  fill: currentColor;
+  shape-rendering: crispEdges;
+}
+
+.pixel-icon-question {
+  width: 7px;
+  height: 10px;
+}
+
+.pixel-icon-close {
+  width: 12px;
+  height: 12px;
 }
 
 main {
@@ -69,7 +88,13 @@ main {
   border: 3px solid #0054e3;
   border-bottom: 0;
   border-radius: 8px 8px 0 0;
-  background: linear-gradient(to bottom, #3f9bff 0%, #0869e8 15%, #0054e3 70%, #003db8 100%);
+  background: linear-gradient(
+    to bottom,
+    #3f9bff 0%,
+    #0869e8 15%,
+    #0054e3 70%,
+    #003db8 100%
+  );
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -178,7 +203,9 @@ main {
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
-  transition: background 160ms ease, color 140ms ease;
+  transition:
+    background 160ms ease,
+    color 140ms ease;
 }
 
 .download-secondary {
@@ -192,7 +219,13 @@ main {
 .download:hover {
   border-color: #ffffff #003399 #003399 #ffffff;
   color: #ffffff;
-  background: linear-gradient(to bottom, #3f9bff, #0869e8 20%, #0054e3 75%, #003db8);
+  background: linear-gradient(
+    to bottom,
+    #3f9bff,
+    #0869e8 20%,
+    #0054e3 75%,
+    #003db8
+  );
   box-shadow: inset 0 0 0 1px #75a9ff;
   text-shadow: 1px 1px #003399;
 }
@@ -240,7 +273,9 @@ main {
   transform: scale(0.88);
   image-rendering: pixelated;
   pointer-events: none;
-  transition: opacity 420ms ease, transform 420ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  transition:
+    opacity 420ms ease,
+    transform 420ms cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 
 .has-pixelated-label {
@@ -271,7 +306,7 @@ main {
 }
 
 .download-secondary:hover::after {
-  content: none;
+  border-color: var(--paper);
 }
 
 .site-footer {
@@ -300,7 +335,9 @@ main {
   border-radius: 1px;
   color: #ffffff;
   background: #316ac5;
-  box-shadow: 0 0 0 1px #003399, inset 1px 1px #75a9ff;
+  box-shadow:
+    0 0 0 1px #003399,
+    inset 1px 1px #75a9ff;
   font-weight: 700;
   text-decoration: none;
   text-shadow: 1px 1px #003399;
@@ -358,7 +395,13 @@ main {
   padding: 3px 4px 3px 7px;
   color: #ffffff;
   font-size: 12px;
-  background: linear-gradient(to bottom, #3f9bff 0%, #0869e8 15%, #0054e3 70%, #003db8 100%);
+  background: linear-gradient(
+    to bottom,
+    #3f9bff 0%,
+    #0869e8 15%,
+    #0054e3 70%,
+    #003db8 100%
+  );
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -376,19 +419,41 @@ main {
 }
 
 .intent-close-button {
+  position: relative;
   display: grid;
   width: 22px;
   height: 22px;
-  padding: 0 0 2px;
+  padding: 0;
   place-items: center;
   border: 1px solid #ffffff;
   border-radius: 3px;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ff9b7b, #e33b18 55%, #b81800);
-  box-shadow: inset 1px 1px rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+  background: var(--panel);
+  box-shadow:
+    0 0 0 1px #003399,
+    inset 1px 1px #ffffff,
+    inset -1px -1px var(--line);
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
+  text-shadow: none;
+}
+
+.intent-close-button:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff9b7b, #e33b18 55%, #b81800);
+  box-shadow:
+    0 0 0 1px #003399,
+    inset 1px 1px rgba(255, 255, 255, 0.6);
+  text-shadow: 1px 1px #8f1700;
+}
+
+.intent-close-button:hover::after {
+  position: absolute;
+  inset: 2px;
+  border: 1px dotted #ffffff;
+  content: "";
+  pointer-events: none;
 }
 
 .intent-modal-body {
