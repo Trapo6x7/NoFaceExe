@@ -1,4 +1,4 @@
-# NoFace.Exe
+# noface.exe
 
 ## Statement of intent
 
@@ -8,7 +8,7 @@ Software that renders faces unreadable. A standalone application whose sole purp
 
 ### The concept: opacity as a right
 
-NOFACE.EXE repurposes facial recognition tools to subtract rather than identify. The project extends Édouard Glissant’s “right to opacity” into the digital realm: the right not to be fully identifiable, explainable, or reducible to a system’s categories. It asserts the right not to be reduced to data. A crowd thus becomes an anonymized subject, beyond the logic of model training.
+noface.exe repurposes facial recognition tools to subtract rather than identify. The project extends Édouard Glissant’s “right to opacity” into the digital realm: the right not to be fully identifiable, explainable, or reducible to a system’s categories. It asserts the right not to be reduced to data. A crowd thus becomes an anonymized subject, beyond the logic of model training.
 
 ### The pixel as a sign
 
@@ -16,7 +16,7 @@ Pixelation does not seek to erase faces completely: it preserves a visible trace
 
 ### What escapes
 
-Automatic detection remains imperfect: some faces escape the model because of angle, lighting, motion, resolution, or biases in its training data. NOFACE.EXE does not hide these errors. It makes them visible and allows the user to complete the process manually. This gesture reintroduces human judgment into the automated process and reminds us that no vision system is neutral, exhaustive, or infallible.
+Automatic detection remains imperfect: some faces escape the model because of angle, lighting, motion, resolution, or biases in its training data. noface.exe does not hide these errors. It makes them visible and allows the user to complete the process manually. This gesture reintroduces human judgment into the automated process and reminds us that no vision system is neutral, exhaustive, or infallible.
 
 ### The file as a political stance
 

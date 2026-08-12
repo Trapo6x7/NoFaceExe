@@ -1,25 +1,25 @@
 const DOWNLOAD_URLS = {
-  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/NOFACE.EXE-Setup-1.2.1-x64.exe",
-  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/NOFACE.EXE-Portable-1.2.1-x64.exe",
+  setup: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/noface.exe-Setup-1.2.1-x64.exe",
+  portable: "https://github.com/Trapo6x7/NoFaceExe/releases/download/v1.2.1/noface.exe-Portable-1.2.1-x64.exe",
 };
 
 const TRANSLATIONS = {
   fr: {
-    description: "NOFACE.EXE",
+    description: "noface.exe",
     aboutLabel: "À propos",
     closeLabel: "Fermer",
     switchLabel: "Passer le site en anglais",
-    install: "Installer NOFACE.EXE",
+    install: "Installer noface.exe",
     portable: "Version portable",
     desktopDownloadNotice:
-      "NOFACE.EXE est disponible sur Windows. Ouvrez cette page depuis un ordinateur pour le télécharger.",
+      "noface.exe est disponible sur Windows. Ouvrez cette page depuis un ordinateur pour le télécharger.",
     tagline: "LOCAL - ANONYME - GRATUIT",
     gestureTitle: "Le geste",
     gestureBody:
       "Un logiciel qui rend les visages illisibles. Une application autonome dont l’unique but est l’anonymisation.",
     conceptTitle: "Le concept : l’opacité comme droit",
     conceptBody:
-      "NOFACE.EXE détourne les outils de reconnaissance faciale pour soustraire plutôt qu’identifier. " +
+      "noface.exe détourne les outils de reconnaissance faciale pour soustraire plutôt qu’identifier. " +
       "Le projet prolonge, dans le champ numérique, le « droit à l’opacité » formulé par Édouard Glissant : " +
       "le droit de ne pas être entièrement identifiable, explicable ou réductible aux catégories d’un système. " +
       "Il affirme le droit de ne pas être réduit à une donnée. Une foule devient ainsi sujet anonymisé, " +
@@ -34,7 +34,7 @@ const TRANSLATIONS = {
     escapeBody:
       "La détection automatique reste imparfaite : certains visages échappent au modèle en raison de l’angle, " +
       "de la lumière, du mouvement, de la résolution ou des biais contenus dans ses données d’entraînement. " +
-      "NOFACE.EXE ne dissimule pas ces erreurs, mais les rend visibles et permet à l’utilisateur de compléter " +
+      "noface.exe ne dissimule pas ces erreurs, mais les rend visibles et permet à l’utilisateur de compléter " +
       "manuellement le traitement. Ce geste réintroduit une décision humaine dans le processus automatisé et " +
       "rappelle qu’aucun système de vision n’est neutre, exhaustif ou infaillible.",
     politicsTitle: "La position politique du fichier",
@@ -46,21 +46,21 @@ const TRANSLATIONS = {
       "loin des plateformes, du cloud et de la surveillance permanente.",
   },
   en: {
-    description: "NOFACE.EXE",
+    description: "noface.exe",
     aboutLabel: "About",
     closeLabel: "Close",
     switchLabel: "Switch the site to French",
-    install: "Install NOFACE.EXE",
+    install: "Install noface.exe",
     portable: "Portable version",
     desktopDownloadNotice:
-      "NOFACE.EXE is available for Windows. Open this page on a computer to download it.",
+      "noface.exe is available for Windows. Open this page on a computer to download it.",
     tagline: "LOCAL - ANONYMOUS - FREE",
     gestureTitle: "The gesture",
     gestureBody:
       "Software that renders faces unreadable. A standalone application whose sole purpose is anonymization.",
     conceptTitle: "The concept: opacity as a right",
     conceptBody:
-      "NOFACE.EXE repurposes facial recognition tools to subtract rather than identify. " +
+      "noface.exe repurposes facial recognition tools to subtract rather than identify. " +
       "The project extends Édouard Glissant’s “right to opacity” into the digital realm: the right not to be fully " +
       "identifiable, explainable, or reducible to a system’s categories. It asserts the right not to be reduced to data. " +
       "A crowd thus becomes an anonymized subject, beyond the logic of model training.",
@@ -73,7 +73,7 @@ const TRANSLATIONS = {
     escapeTitle: "What escapes",
     escapeBody:
       "Automatic detection remains imperfect: some faces escape the model because of angle, lighting, motion, " +
-      "resolution, or biases in its training data. NOFACE.EXE does not hide these errors. It makes them visible and " +
+      "resolution, or biases in its training data. noface.exe does not hide these errors. It makes them visible and " +
       "allows the user to complete the process manually. This gesture reintroduces human judgment into the automated " +
       "process and reminds us that no vision system is neutral, exhaustive, or infallible.",
     politicsTitle: "The file as a political stance",
