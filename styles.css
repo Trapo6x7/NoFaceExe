@@ -602,6 +602,7 @@ main {
   }
 
   main {
+    grid-template-rows: 34px minmax(0, 1fr) 52px;
     height: min(300px, calc(100vh - 16px));
     min-height: 0;
   }
