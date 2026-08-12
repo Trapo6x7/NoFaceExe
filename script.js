@@ -12,7 +12,7 @@ const TRANSLATIONS = {
     install: "Installer noface.exe",
     portable: "Version portable",
     desktopDownloadNotice:
-      "noface.exe est disponible sur Windows. \n<br> Ouvrez cette page depuis un ordinateur pour le télécharger.",
+      "noface.exe est disponible sur Windows. \n Ouvrez cette page depuis un ordinateur pour le télécharger.",
     tagline: "LOCAL - ANONYME - GRATUIT",
     gestureTitle: "Le geste",
     gestureBody:
