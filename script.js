@@ -124,15 +124,23 @@ document.querySelectorAll("[data-download]").forEach((link) => {
   link.href = DOWNLOAD_URLS[link.dataset.download];
 });
 
-const mobileDownloadMedia = window.matchMedia(
-  "(max-width: 1024px), (hover: none) and (pointer: coarse)",
-);
 const downloadModal = document.querySelector("[data-download-modal]");
 const downloadModalCloseButtons = document.querySelectorAll("[data-download-modal-close]");
 let downloadModalPreviousFocus;
 
+function isMobileOrTabletDevice() {
+  const userAgent = navigator.userAgent;
+  const isIPadOS = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+
+  return (
+    navigator.userAgentData?.mobile === true ||
+    /Android|iPhone|iPad|iPod|Mobile|Tablet|Silk|Kindle/i.test(userAgent) ||
+    isIPadOS
+  );
+}
+
 function openDownloadModal(event) {
-  if (!mobileDownloadMedia.matches || !downloadModal) return;
+  if (!isMobileOrTabletDevice() || !downloadModal) return;
 
   event.preventDefault();
   downloadModalPreviousFocus = event.currentTarget;
