@@ -160,5 +160,46 @@
         </div>
       </section>
     </div>
+
+    <div class="modal-backdrop" data-download-modal hidden>
+      <section
+        class="intent-modal download-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="download-modal-title"
+      >
+        <header class="intent-modal-header">
+          <strong id="download-modal-title" class="intent-modal-title">noface.exe</strong>
+          <button
+            type="button"
+            class="intent-close-button"
+            data-download-modal-close
+            aria-label="Close"
+            data-i18n-aria-label="closeLabel"
+          >
+            <svg
+              class="pixel-icon pixel-icon-close"
+              viewBox="0 0 7 7"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M0 0h2v1H0zm5 0h2v1H5zM1 1h2v1H1zm3 0h2v1H4zM2 2h3v1H2zm1 1h1v1H3zM2 4h3v1H2zM1 5h2v1H1zm3 0h2v1H4zM0 6h2v1H0zm5 0h2v1H5z" />
+            </svg>
+          </button>
+        </header>
+
+        <div class="intent-modal-body">
+          <p data-i18n="desktopDownloadNotice">
+            noface.exe is available for Windows. <br /> Open this page on a computer to download it.
+          </p>
+        </div>
+
+        <div class="intent-modal-footer">
+          <button type="button" class="modal-ok-button" data-download-modal-close>
+            OK
+          </button>
+        </div>
+      </section>
+    </div>
   </body>
 </html>

@@ -652,16 +652,6 @@ main {
   }
 }
 
-@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
-  .downloads {
-    display: none;
-  }
-
-  .desktop-download-notice {
-    display: block;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

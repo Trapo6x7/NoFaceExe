@@ -124,6 +124,44 @@ document.querySelectorAll("[data-download]").forEach((link) => {
   link.href = DOWNLOAD_URLS[link.dataset.download];
 });
 
+const mobileDownloadMedia = window.matchMedia(
+  "(max-width: 1024px), (hover: none) and (pointer: coarse)",
+);
+const downloadModal = document.querySelector("[data-download-modal]");
+const downloadModalCloseButtons = document.querySelectorAll("[data-download-modal-close]");
+let downloadModalPreviousFocus;
+
+function openDownloadModal(event) {
+  if (!mobileDownloadMedia.matches || !downloadModal) return;
+
+  event.preventDefault();
+  downloadModalPreviousFocus = event.currentTarget;
+  downloadModal.hidden = false;
+  document.body.classList.add("modal-open");
+  renderPixelatedLabels();
+  downloadModal.querySelector("[data-download-modal-close]").focus();
+}
+
+function closeDownloadModal() {
+  if (!downloadModal) return;
+
+  downloadModal.hidden = true;
+  document.body.classList.remove("modal-open");
+  downloadModalPreviousFocus?.focus();
+}
+
+document.querySelectorAll("[data-download]").forEach((link) => {
+  link.addEventListener("click", openDownloadModal);
+});
+
+downloadModalCloseButtons.forEach((button) => {
+  button.addEventListener("click", closeDownloadModal);
+});
+
+downloadModal?.addEventListener("click", (event) => {
+  if (event.target === downloadModal) closeDownloadModal();
+});
+
 function renderPixelatedLabels() {
   document.querySelectorAll(".download, .modal-ok-button").forEach((element) => {
     element.dataset.pixelLabel = element.textContent.trim();
@@ -284,7 +322,10 @@ modalBody?.addEventListener("pointerleave", () => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal && !modal.hidden) closeModal();
+  if (event.key !== "Escape") return;
+
+  if (modal && !modal.hidden) closeModal();
+  if (downloadModal && !downloadModal.hidden) closeDownloadModal();
 });
 
 const appWindow = document.querySelector("[data-window]");
